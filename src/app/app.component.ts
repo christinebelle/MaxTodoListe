@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatalisteService } from './dataliste.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'maxToDoListe';
+  title = 'La To Do Liste de Maxime';
+
+  constructor(private dataListeService: DatalisteService) {}
+
+  ngOnInit() {
+    this.dataListeService.getListes();
+}
 }
