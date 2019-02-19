@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDragEnter, CdkDragExit} from '@angular/cdk/drag-drop';
+import { DatalisteService } from '../dataliste.service';
+import { Todoliste } from '../modeles/Todoliste';
 
 @Component({
   selector: 'app-kanban',
@@ -8,11 +10,13 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class KanbanComponent implements OnInit {
 
+
   todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
+    'Get ',
+    'Brush ',
+    'Take',
+    'Check',
+    'Walk'
   ];
 
   done = [
@@ -23,6 +27,30 @@ export class KanbanComponent implements OnInit {
     'Walk dog'
   ];
 
+  finish = [
+    'end',
+    'back',
+    'sleep'
+  ];
+
+  
+  
+  constructor(private datalisteService: DatalisteService) { }
+  
+  ngOnInit() {
+    
+    // this.datalisteService.getListe().subscribe( todolisteApi => {
+      
+    //   this.todo = todolisteApi;  
+      
+    // });
+    
+  }
+    
+  /**
+   * methode permettant de déplacer les elements de la liste dans la liste
+   * @param event 
+   */
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -34,11 +62,19 @@ export class KanbanComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  /**
+   * Methode stockant la position initial
+   * @param event 
+   */
+  entered(event: CdkDragEnter<string[]>) {
+    console.log('Entered', event.item.data);
+   }
 
-  ngOnInit() {
-
-  }
-
-  
+   /**
+    * 
+    * @param event methode stockant la position final
+    */
+   exited(event: CdkDragExit<string[]>) {
+     console.log('Exited', event.item.data);
+   }
 }

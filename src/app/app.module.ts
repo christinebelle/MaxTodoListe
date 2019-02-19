@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TodolisteComponent } from './todoliste/todoliste.component';
 import { KanbanComponent } from './kanban/kanban.component';
+import { FormulaireComponent } from './formulaire/formulaire.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { KanbanComponent } from './kanban/kanban.component';
     HeaderComponent,
     FooterComponent,
     TodolisteComponent,
-    KanbanComponent
+    KanbanComponent,
+    FormulaireComponent
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TodolisteComponent implements OnInit {
 
   
-  displayedColumns: string[] = ['idListe', 'nomListe', 'decritListe', 'evolListe'];
+  displayedColumns: string[] = ['idListe', 'nomListe', 'decritListe', 'evolListe','modifSupp'];
   dataSource = new MatTableDataSource<Todoliste>() ;
 
 
@@ -26,10 +26,12 @@ export class TodolisteComponent implements OnInit {
   ngOnInit() {
     
     
-    this.datalisteService.getListe().subscribe( todolisteApi =>
-      this.dataSource = new MatTableDataSource(todolisteApi));  
+    this.datalisteService.getListe().subscribe( todolisteApi => {
+
+      this.dataSource.data = todolisteApi;  
       
       this.dataSource.paginator = this.paginator;
+    });
     
   }
 }

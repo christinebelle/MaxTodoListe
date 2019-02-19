@@ -1,9 +1,52 @@
+.lead {
+  color: #054581;
+}
+
 table {
-    width: 100%;
-   background-color:rgb(5, 75, 155);
+    width: 100%;  
+       
+  }
+
+  .container {
+    max-width: 1400px;
+}
+  
+  th {  
+    font-weight: bold;  
+    font-size: 18px;
+    color: #054581;
+    background-color: #6ba8e0;
+    border-color: #E1EBF5;
+  }
+  
+  th.mat-header-cell{
+    text-align: center;
+  }
+
+  td {
+    font-size: 18px;
+    color: #E1EBF5;
+    background-color: #054581;
+    border-color: #E1EBF5;
+    text-align: center;
   }
 
 mat-paginator {
-  background-color:rgb(179, 179, 179);
-  color: black;
+  background-color:#6ba8e0;
+  font-weight: bold;  
+  font-size: 18px;
+  color: #054581;
+}
+
+button {
+    margin: 10px;
+    color: #fff;
+    background-color:#218a2f ;
+    border-color: #218a2f;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #054581;
+  border-color: #054581;
 }

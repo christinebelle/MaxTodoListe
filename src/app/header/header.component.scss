@@ -3,8 +3,8 @@ nav {
 	padding: 0px 20px;
 }
 
-h3 {
-	padding: 0px 10px;
+h3 {	
+	color: #054581;
 }
 
 header {
@@ -17,5 +17,18 @@ header {
 #header .logo {
 	height: 70px;
     width: 90px;
+}
+
+.btn-primary {
+	margin: 10px;
+    color: #fff;
+    background-color: #218a2f;
+    border-color: #218a2f;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #054581;
+    border-color: #054581;
 }
 
