@@ -37,7 +37,7 @@
           <!-- modifier/supprimer Column -->
           <ng-container matColumnDef="modifSupp">
             <th mat-header-cell *matHeaderCellDef> Modifier/supprimer </th>
-            <td mat-cell *matCellDef="let liste"> {{liste.evolListe}} </td>
+            <td mat-cell *matCellDef="let liste"><a routerLink="/formulaire/{{liste.idListe}}">Modifier/supprimer</a></td>
           </ng-container>
       
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

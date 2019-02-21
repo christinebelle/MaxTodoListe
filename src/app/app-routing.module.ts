@@ -7,6 +7,7 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
 const routes: Routes = [
   {path: 'todoliste', component: TodolisteComponent},
   {path: 'formulaire', component: FormulaireComponent},
+  {path: 'formulaire/:id', component: FormulaireComponent},
   {path: 'kanban', component: KanbanComponent}
 ];
 

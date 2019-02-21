@@ -12,6 +12,6 @@ export class AppComponent {
   constructor(private dataListeService: DatalisteService) {}
 
   ngOnInit() {
-    this.dataListeService.getListes();
+    this.dataListeService.publishListes();
 }
 }

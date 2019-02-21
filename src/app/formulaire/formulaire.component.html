@@ -4,47 +4,49 @@
 </div>
 
 <div class="container">
-  <div class="card-deck mb-3 text-center">
+  <div class="card-deck mb-3 text-center" >
       
         <div class="card mb-4 box-shadow" id="tache-form">
-            <div class="card-body" style="background-color:#E1EBF5;">
-        
+            <div class="card-body">
+
         <ul class="list-unstyled mt-3 mb-4"></ul>
         
               <div class="form-group">
-              <label>Modification ou Suppression par numéro</label>
-              <input id="numtache" class="form-control input-md" type="number">
+              <label for="idListe">Modification ou Suppression par numéro</label>
+              <input id="idListe" name="idListe" class="form-control input-md" type="number" [(ngModel)]="modifListe.idListe">
               </div>
       
               <div class="form-group">
-              <label>Titre de la tâche : Création ou Modification</label>
-              <input id="nomtache"class="form-control input-md" type="text">
+              <label for="nomListe">Titre de la tâche : Création ou Modification</label>
+              <input id="nomListe" name="nomListe" class="form-control input-md" type="text" [(ngModel)]="modifListe.nomListe">
               </div>
       
               <div class="form-group">
-              <label>Niveau de la tâche : choisissez l'option </label>
-                <select id="evoltache" class="form-control input-md">
-                  <option value=""></option>
+              <label for="evolListe">Niveau de la tâche : choisissez l'option </label>
+                <select id="evolListe" name="evolListe" class="form-control" [(ngModel)]="modifListe.evolListe">
+                  <option value={{modifListe.evolListe}}>{{modifListe.evolListe}}</option>
                   <option value="à faire">à faire</option>
-                  <option value="en cours">en Cours</option>
+                  <option value="en cours">en cours</option>
                   <option value="terminer">terminer</option>
                 </select>
               </div>          				
             </div>
         </div>
     
-    <div class="card mb-4 box-shadow">          
-      <div class="card-body" style="background-color: #E1EBF5;">
-        <div class="form-group" id="tache-form">
-      <label>Description de la tâche ( 255 caractères maximum ):</label>
-      <textarea id="decrittache" class="form-control input-md" style="width: 100%; height: 150px;"></textarea>
+      <div class="card mb-4 box-shadow">          
+        <div class="card-body">
+          <div class="form-group" id="tache-form">
+            <label for="decritListe">Description de la tâche ( 255 caractères maximum ):</label>
+            <textarea id="decritListe" name="decritListe" class="form-control input-md" [(ngModel)]="modifListe.decritListe"></textarea>
+          </div>
+          
+          <ul class="list-unstyled mt-3 mb-4"></ul>
+          
+            <button id="btn-post" type="submit" (click)="onSave()" class="btn btn-primary" style="margin-right: 0px; float: left;">Créer une tâche</button>
+            <button id="btn-put" type="submit" (click)="onSave()" class="btn btn-primary" >Modifier une tâche</button>
+            <button id="btn-delete" type="button" class="btn btn-primary" style="float: right;">Supprimer une tâche</button>
         </div>
-        
-        <ul class="list-unstyled mt-3 mb-4"></ul>
-        
-      <button id="btn-post" type="button" class="btn btn-primary" style="margin-right: 0px; float: left;">Créer une tâche</button>
-      <button id="btn-put" type="button" class="btn btn-primary" >Modifier une tâche</button>
-      <button id="btn-delete" type="button" class="btn btn-primary" style="float: right;">Supprimer une tâche</button>
       </div>
-    </div>
+  </div>
+</div>
 
