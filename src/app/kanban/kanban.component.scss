@@ -56,3 +56,24 @@
   .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
+
+  .example-box {
+    cursor: grab;
+    
+    background-color: #6BA8E0;
+    color: #054581;
+    font-size: 22px;
+  }
+
+  h3 {
+    padding: 20px 10px;
+    text-align: center;
+    background-color: #E1EBF5;
+    color: #054581;
+    box-sizing: border-box;
+    border: solid 1px #ccc;
+  }
+
+  h2.lead {    
+    color: #054581;
+  }
