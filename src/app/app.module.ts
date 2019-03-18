@@ -6,6 +6,7 @@ import {MatTableModule} from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TodolisteComponent } from './todoliste/todoliste.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
+import { CreerKanbanComponent } from './creer-kanban/creer-kanban.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
     FooterComponent,
     TodolisteComponent,
     KanbanComponent,
-    FormulaireComponent
+    FormulaireComponent,
+    CreerKanbanComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
     MatPaginatorModule,
     AppRoutingModule,
     HttpClientModule,
+    MatFormFieldModule,
     BrowserAnimationsModule
   ],
   providers: [],

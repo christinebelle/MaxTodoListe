@@ -1,5 +1,6 @@
 .lead {
   color: #054581;
+  font-weight: bold;
 }
 
 table {
@@ -15,7 +16,7 @@ table {
     font-weight: bold;  
     font-size: 18px;
     color: #054581;
-    background-color: #6ba8e0;
+    background-color: #8cbbe6;
     border-color: #E1EBF5;
   }
   
@@ -25,24 +26,27 @@ table {
 
   td {
     font-size: 18px;
-    color: #E1EBF5;
+    color: #ffffff;
     background-color: #054581;
     border-color: #E1EBF5;
     text-align: center;
   }
 
+  a {
+    color: #ffffff;
+  }
+
 mat-paginator {
-  background-color:#6ba8e0;
-  font-weight: bold;  
+  background-color:#054581;  
   font-size: 18px;
-  color: #054581;
+  color: #ffffff;
 }
 
-button {
+.btn-success {
     margin: 10px;
     color: #fff;
-    background-color:#218a2f ;
-    border-color: #218a2f;
+    background-color:#248130 ;
+    border-color: #248130;
 }
 
 .btn-primary {

@@ -19,7 +19,7 @@ export class DatalisteService {
   constructor(private httpClient: HttpClient) { }
 
   public getListe(): Observable<Todoliste[]> {// l'observable verfifie le type et le delais de retour
-    return this.httpClient.get<Todoliste[]>('http://localhost:8080/api/liste');// interprete le retour JSON et lance un observable
+    return this.httpClient.get<Todoliste[]>('http://localhost:8080/liste');// interprete le retour JSON et lance un observable
   }
 
   public publishListes() {
@@ -41,7 +41,7 @@ export class DatalisteService {
         }
         return of(this.doliste.find(liste => liste.idListe === id));
       } else {
-        return of(new Todoliste(0, '', '', ""))
+        return of(new Todoliste(0, '', '', "",new Date()))
       }
   }
 
@@ -51,9 +51,9 @@ export class DatalisteService {
    * @param livreCreate
    */
   public createListe(listeCreate: Todoliste) {
-    this.httpClient.post<Todoliste>('http://localhost:8080/api/ajouter', listeCreate).subscribe(
-      newLivre => {
-        this.doliste.push(newLivre);
+    this.httpClient.post<Todoliste>('http://localhost:8080/ajouter', listeCreate).subscribe(
+      newListe => {
+        this.doliste.push(newListe);
         this.todoliste$.next(this.doliste);
       });
   }
@@ -63,14 +63,14 @@ export class DatalisteService {
    * @param livreUpdate
    */
   public updateListe(listeUpdate: Todoliste) {
-    this.httpClient.post<Todoliste>('http://localhost:8080/api/modifier', listeUpdate).subscribe(
-      updatedLivre => {
+    this.httpClient.put<Todoliste>('http://localhost:8080/modifier',listeUpdate).subscribe(
+      updatedListe => {
         const index = this.doliste.findIndex(liste => {
-          if (liste.idListe === updatedLivre.idListe) {
+          if (liste.idListe === updatedListe.idListe) {
             return true;
           }
         });
-        this.doliste[index] = listeUpdate;
+        this.doliste[index] = updatedListe;
         this.todoliste$.next(this.doliste);
       });
   }
@@ -79,13 +79,16 @@ export class DatalisteService {
    * fonction de suppression d'un livre dans la bdd et dans la liste afin de creer un affichage dynamique
    * @param idLivre
    */
-  public removeLivre(idListe: number) {
-    this.httpClient.delete('http://localhost:8080/api/supprime?id=' + idListe).subscribe(
-      ok => {
+  public deleteListe(idListe: number) {
+    this.httpClient.delete('http://localhost:8080/supprime/' + idListe).subscribe(
+      ()=> {
         const index = this.doliste.findIndex(liste => {
           if (liste.idListe === idListe) {
             return true;
           }
+        },
+        (error)=>{
+          console.log("error", error);
         });
         this.doliste.splice(index, 1);
         this.todoliste$.next(this.doliste);

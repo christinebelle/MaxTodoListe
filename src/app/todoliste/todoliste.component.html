@@ -3,19 +3,29 @@
   <a routerLink="/formulaire"><button type="button" class="btn btn-success">Créer une tâche</button></a>
   <a routerLink="/kanban"><button type="button" class="btn btn-primary">Tableau Kanban</button></a>
 </div>
-      
+
 <div class="container">       
-  <div class="m-5">     
-   
+  <div class="m-5"> 
+    
+    <!--<mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>-->
+
     <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource">
-      
+        <table mat-table [dataSource]="dataSource">    
+
           <!-- Position Column -->
           <ng-container matColumnDef="idListe">
             <th mat-header-cell *matHeaderCellDef> Numero </th>
             <td mat-cell *matCellDef="let liste"> {{liste.idListe}} </td>
           </ng-container>
-      
+          
+          <!-- Date Column -->
+          <ng-container matColumnDef="dateListe">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let liste"> {{liste.dateListe |date:'dd/MM/yy'}} </td>
+          </ng-container>
+          
           <!-- Nom Column -->
           <ng-container matColumnDef="nomListe">
             <th mat-header-cell *matHeaderCellDef> Titre </th>
@@ -30,14 +40,21 @@
       
           <!-- Niveau Column -->
           <ng-container matColumnDef="evolListe">
-            <th mat-header-cell *matHeaderCellDef> Niveau   </th>
+            <th mat-header-cell *matHeaderCellDef> Niveau </th>
             <td mat-cell *matCellDef="let liste"> {{liste.evolListe}} </td>
           </ng-container>
 
-          <!-- modifier/supprimer Column -->
-          <ng-container matColumnDef="modifSupp">
-            <th mat-header-cell *matHeaderCellDef> Modifier/supprimer </th>
-            <td mat-cell *matCellDef="let liste"><a routerLink="/formulaire/{{liste.idListe}}">Modifier/supprimer</a></td>
+
+          <!-- modifier Column -->
+          <ng-container matColumnDef="modif">
+            <th mat-header-cell *matHeaderCellDef> Modifier </th>
+            <td mat-cell *matCellDef="let liste"><button type="button" class="btn btn-success" routerLink="/formulaire/{{liste.idListe}}">Modifier</button></td>
+          </ng-container>
+
+          <!-- supprimer Column -->
+          <ng-container matColumnDef="Supp">
+            <th mat-header-cell *matHeaderCellDef> Supprimer </th>
+            <td mat-cell *matCellDef="let liste"><button class="btn btn-danger" (click)="onDelete(liste.idListe)">Supprimer</button></td>
           </ng-container>
       
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

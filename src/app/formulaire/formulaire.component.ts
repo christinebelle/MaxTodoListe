@@ -22,7 +22,6 @@ export class FormulaireComponent implements OnInit {
     // on recupere l'id dans la route et appel les fonctions
     this.id = +this.route.snapshot.params.id;
     this.initCreerListe(this.id);
-    console.log(this.modifListe);
   }
 
  /**
@@ -33,9 +32,9 @@ export class FormulaireComponent implements OnInit {
     if (id) {
       this.datalisteService.findListe(id).subscribe(
         liste => this.modifListe = liste
-      );
+      );console.log(this.modifListe)
     } else {
-      this.modifListe = new Todoliste(0, '', '', '');
+      this.modifListe = new Todoliste(0, '', '', '',new Date());
     }
   }
 
@@ -44,10 +43,12 @@ export class FormulaireComponent implements OnInit {
    */
   onSave() {
     if (this.id) {
-      this.datalisteService.updateListe(this.modifListe);
+     this.datalisteService.updateListe(this.modifListe);
     } else {
       this.datalisteService.createListe(this.modifListe);
     }
-    //this.router.navigate(['/todoliste']);
+    this.router.navigate(['/todoliste']);
   }
+
+ 
 }

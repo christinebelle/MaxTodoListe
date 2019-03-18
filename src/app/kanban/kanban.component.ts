@@ -10,6 +10,7 @@ import { Todoliste } from '../modeles/Todoliste';
 })
 export class KanbanComponent implements OnInit {
 
+  public position: string;
 
   todo = [
     'Get ',
@@ -62,19 +63,8 @@ export class KanbanComponent implements OnInit {
     }
   }
 
-  /**
-   * Methode stockant la position initial
-   * @param event 
-   */
-  entered(event: CdkDragEnter<string[]>) {
-    console.log('Entered', event.item.data);
-   }
-
-   /**
-    * 
-    * @param event methode stockant la position final
-    */
-   exited(event: CdkDragExit<string[]>) {
-     console.log('Exited', event.item.data);
-   }
+  getPosition(e){
+        
+    console.log(e) 
+  }
 }

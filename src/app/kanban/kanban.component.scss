@@ -60,7 +60,7 @@
   .example-box {
     cursor: grab;
     
-    background-color: #6BA8E0;
+    background-color: #8cbbe6;
     color: #054581;
     font-size: 22px;
   }
@@ -76,4 +76,10 @@
 
   h2.lead {    
     color: #054581;
+  }
+
+  .btn-primary {
+    color: #fff;
+    background-color: #054581;
+    border-color: #054581;
   }

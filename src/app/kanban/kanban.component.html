@@ -1,7 +1,7 @@
 <article class="row">
   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <a routerLink="/todoliste"><button type="button" class="btn btn-primary" >Liste TodoListe</button></a><br>
-             <br> <h2 class="lead">Le Tableau Kaban de Maxime</h2>
+             <br> <h2 class="lead">Le Tableau Kanban de Maxime</h2>
              <br>
   </div>
 </article>
@@ -10,14 +10,13 @@
 <div class="example-container">
   <h3>A Faire</h3>
 
-  <div
+  <div  
+  (mouseup)="getPosition('A Faire')"
     cdkDropList
     #AFaire="cdkDropList"
     [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[EnCour]"
+    [cdkDropListConnectedTo]="[EnCour,Afaire]"
     class="example-list"
-    (cdkDropEntered)="entered($event)" 
-    (cdkDropExited)="exited($event)"
     (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let item of todo" cdkDrag [cdkDragData]="item">{{item}}</div>
   </div>
@@ -27,9 +26,8 @@
   <h3>En Cour</h3>
 
   <div
+  (mouseup)="getPosition('En Cour')"
     cdkDropList
-    (cdkDropEntered)="entered($event)" 
-    (cdkDropExited)="exited($event)"
     #EnCour="cdkDropList"
     [cdkDropListData]="done"
     [cdkDropListConnectedTo]="[Terminer]"
@@ -43,9 +41,8 @@
   <h3>Terminer</h3>
 
   <div
+  (mouseup)="getPosition('Terminer')"
     cdkDropList
-    (cdkDropEntered)="entered($event)" 
-    (cdkDropExited)="exited($event)"
     #Terminer="cdkDropList"
     [cdkDropListData]="finish"
     [cdkDropListConnectedTo]="[EnCour]"
