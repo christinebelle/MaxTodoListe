@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatalisteService } from '../dataliste.service';
+import { DatalisteService } from '../service/dataliste.service';
 import { Todoliste } from '../modeles/Todoliste';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -32,7 +32,7 @@ export class FormulaireComponent implements OnInit {
     if (id) {
       this.datalisteService.findListe(id).subscribe(
         liste => this.modifListe = liste
-      );console.log(this.modifListe)
+      );
     } else {
       this.modifListe = new Todoliste(0, '', '', '',new Date());
     }

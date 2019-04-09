@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Todoliste } from './modeles/Todoliste';
+import { Todoliste } from '../modeles/Todoliste';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class DatalisteService {
   }
 
   /**
-   * fonction qui permet de chercher une tâche dans la liste suivant son id
+   * fonction qui permet de chercher un projet dans la liste suivant son id
    * @param idListe
    * @return Observable<Todoliste>
    */
@@ -46,9 +46,9 @@ export class DatalisteService {
   }
 
   /**
-   * fonction de création d'une liste dans la bdd, et qui rajoute une tâche a la liste afin de creer
+   * fonction de création d'un projet dans la bdd, et qui rajoute un projet a la liste afin de creer
    * un affichage dynamique
-   * @param livreCreate
+   * @param listeCreate
    */
   public createListe(listeCreate: Todoliste) {
     this.httpClient.post<Todoliste>('http://localhost:8080/ajouter', listeCreate).subscribe(
@@ -59,8 +59,8 @@ export class DatalisteService {
   }
 
    /**
-   * fonction de modification d'un livre dans la bdd et dans la liste afin de creer une affichage dynamique
-   * @param livreUpdate
+   * fonction de modification d'un projet dans la bdd et dans la liste afin de creer une affichage dynamique
+   * @param listeUpdate
    */
   public updateListe(listeUpdate: Todoliste) {
     this.httpClient.put<Todoliste>('http://localhost:8080/modifier',listeUpdate).subscribe(
@@ -76,8 +76,8 @@ export class DatalisteService {
   }
 
   /**
-   * fonction de suppression d'un livre dans la bdd et dans la liste afin de creer un affichage dynamique
-   * @param idLivre
+   * fonction de suppression d'un projet dans la bdd et dans la liste afin de creer un affichage dynamique
+   * @param idListe
    */
   public deleteListe(idListe: number) {
     this.httpClient.delete('http://localhost:8080/supprime/' + idListe).subscribe(

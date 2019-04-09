@@ -1,3 +1,50 @@
-<p>
-  creer-kanban works!
-</p>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <p class="lead">Créer  Modifier ou supprimer une tâche</p>
+    <a routerLink="/kanban"><button type="button" class="btn btn-success">retour à la liste</button></a>
+  </div>
+  
+  <div class="container">
+    <div class="card-deck mb-3 text-center" >
+        
+          <div class="card mb-4 box-shadow" id="tache-form">
+              <div class="card-body">
+  
+          <ul class="list-unstyled mt-3 mb-4"></ul>
+          
+                <div class="form-group">
+                <label for="id">Modification ou Suppression par numéro</label>
+                <input id="id" name="id" class="form-control input-md" type="number" [(ngModel)]="newTache.id">
+                </div>
+        
+                <div class="form-group">
+                  <label for="position">Niveau de la tâche : choisissez l'option </label>
+                    <select id="position" name="position" class="form-control" [(ngModel)]="newTache.position">
+                      <option value="à faire">à faire</option>
+                      <option value="en cours">en cours</option>
+                      <option value="terminer">terminer</option>
+                    </select>
+                  </div>
+        
+                <div class="form-group">
+                <label for="idListe">Sur quel projet : choisissez l'option </label>
+                  <select id="idListe" name="idListe" class="form-control" [(ngModel)]="newTache.idListe" >
+                    <option *ngFor="let projet of listeprojets" value="{{projet.idListe}}">{{projet.idListe}} : {{projet.nomListe}}</option>                   
+                  </select>
+                </div>          				
+              </div>
+          </div>
+      
+        <div class="card mb-4 box-shadow">          
+          <div class="card-body">
+            <div class="form-group" id="tache-form">
+              <label for="tache">Description de la tâche ( 255 caractères maximum ):</label>
+              <textarea id="tache" name="tache" class="form-control input-md" [(ngModel)]="newTache.tache"></textarea>
+            </div>
+            
+            <ul class="list-unstyled mt-3 mb-4"></ul>
+            
+              <button id="btn-post" type="submit" (click)="onSave()" class="btn btn-success" >Valider</button>
+          </div>
+        </div>
+    </div>
+  </div>

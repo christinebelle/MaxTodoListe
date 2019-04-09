@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DatalisteService } from './dataliste.service';
+import { DatalisteService } from './service/dataliste.service';
 
 @Component({
   selector: 'app-root',

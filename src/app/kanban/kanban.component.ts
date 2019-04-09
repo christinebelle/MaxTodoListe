@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDragEnter, CdkDragExit} from '@angular/cdk/drag-drop';
-import { DatalisteService } from '../dataliste.service';
+import { DatalisteService } from '../service/dataliste.service';
 import { Todoliste } from '../modeles/Todoliste';
 
 @Component({

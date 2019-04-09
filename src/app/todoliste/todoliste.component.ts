@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DatalisteService } from '../dataliste.service';
+import { DatalisteService } from '../service/dataliste.service';
 import { Todoliste } from '../modeles/Todoliste';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
