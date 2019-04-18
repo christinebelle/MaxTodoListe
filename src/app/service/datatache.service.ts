@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DragDrop } from '../modeles/DragDrop';
+import { Tache } from '../modeles/Tache';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -8,13 +8,26 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class DatatacheService {
 
-  public dragTache: DragDrop[];
-  dragDropTache$: BehaviorSubject<DragDrop[]> = new BehaviorSubject(this.dragTache);
+  public dragTache: Tache[];
+  public drogTache: Tache;
+  dragDropTache$: BehaviorSubject<Tache[]> = new BehaviorSubject(this.dragTache);
 
   constructor(private httpClient: HttpClient) { }
 
-  public getTache(): Observable<DragDrop[]> {
-    return this.httpClient.get<DragDrop[]>('http://localhost:8080/tache');
+  public getPositionAfaire(): Observable<Tache[]> {
+    return this.httpClient.get<Tache[]>('http://localhost:8080/AFaire');
+  }
+
+  public getPositionEnCour(): Observable<Tache[]> {
+    return this.httpClient.get<Tache[]>('http://localhost:8080/EnCour');
+  }
+
+  public getPositionTerminer(): Observable<Tache[]> {
+    return this.httpClient.get<Tache[]>('http://localhost:8080/Terminer');
+  }
+
+  public getTache(): Observable<Tache[]> {
+    return this.httpClient.get<Tache[]>('http://localhost:8080/tache');
   }
 
   public publishTache() {
@@ -24,16 +37,15 @@ export class DatatacheService {
     });
   }
 
-  public createTache(tacheCreate: DragDrop) {
-    this.httpClient.post<DragDrop>('http://localhost:8080/ajouterTache', tacheCreate).subscribe(
+  public createTache(tacheCreate: Tache) {
+    this.httpClient.post<Tache>('http://localhost:8080/ajouterTache', tacheCreate).subscribe(
       newListe => {
-        this.dragTache.push(newListe);
-        this.dragDropTache$.next(this.dragTache);
+        this.drogTache = newListe;
       });
   }
 
-  public updateListe(tacheUpdate: DragDrop) {
-    this.httpClient.put<DragDrop>('http://localhost:8080/modifierTache',tacheUpdate).subscribe(
+  public updateListe(tacheUpdate: Tache) {
+    this.httpClient.put<Tache>('http://localhost:8080/modifierTache',tacheUpdate).subscribe(
       updatedTache => {
         const index = this.dragTache.findIndex(tache => {
           if (tache.id === updatedTache.id) {

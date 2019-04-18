@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDragEnter, CdkDragExit} from '@angular/cdk/drag-drop';
 import { DatalisteService } from '../service/dataliste.service';
-import { Todoliste } from '../modeles/Todoliste';
+import { Projet } from '../modeles/Projet';
+import { DatatacheService } from '../service/datatache.service';
+import { Tache } from '../modeles/Tache';
 
 @Component({
   selector: 'app-kanban',
@@ -12,39 +14,27 @@ export class KanbanComponent implements OnInit {
 
   public position: string;
 
-  todo = [
-    'Get ',
-    'Brush ',
-    'Take',
-    'Check',
-    'Walk'
-  ];
+  public todo: Tache[];
+  public done: Tache[];
+  public finish: Tache[];
 
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
-
-  finish = [
-    'end',
-    'back',
-    'sleep'
-  ];
-
-  
-  
-  constructor(private datalisteService: DatalisteService) { }
+  constructor(private dataTacheService: DatatacheService) { }
   
   ngOnInit() {
     
-    // this.datalisteService.getListe().subscribe( todolisteApi => {
+    this.dataTacheService.getPositionAfaire().subscribe( listeTache => {      
+      this.todo = listeTache;  
+    });
+
+    
+    this.dataTacheService.getPositionEnCour().subscribe( listeTache => {      
+      this.done = listeTache;  
+    });
+
+    this.dataTacheService.getPositionTerminer().subscribe( listeTache => {      
+      this.finish = listeTache; 
       
-    //   this.todo = todolisteApi;  
-      
-    // });
+    });
     
   }
     
@@ -54,12 +44,14 @@ export class KanbanComponent implements OnInit {
    */
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);      
     } else {
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
+
+                        console.log(event.container.data)
     }
   }
 
@@ -67,4 +59,5 @@ export class KanbanComponent implements OnInit {
         
     console.log(e) 
   }
+
 }

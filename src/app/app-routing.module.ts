@@ -4,13 +4,17 @@ import { TodolisteComponent } from './todoliste/todoliste.component';
 import { KanbanComponent } from './kanban/kanban.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 import { CreerKanbanComponent } from './creer-kanban/creer-kanban.component';
+import { UserGuard } from './guards/user.guard';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path: 'todoliste', component: TodolisteComponent},
-  {path: 'formulaire', component: FormulaireComponent},
-  {path: 'formulaire/:id', component: FormulaireComponent},
-  {path: 'kanban', component: KanbanComponent},
-  {path: 'formulaireTache', component: CreerKanbanComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'todoliste', component: TodolisteComponent, canActivate:[UserGuard]},
+  {path: 'formulaire', component: FormulaireComponent, canActivate:[UserGuard]},
+  {path: 'formulaire/:id', component: FormulaireComponent, canActivate:[UserGuard]},
+  {path: '', component: KanbanComponent, canActivate:[UserGuard]},
+  {path: 'formulaireTache', component: CreerKanbanComponent, canActivate:[UserGuard]},
+  {path: '**', component: KanbanComponent, canActivate:[UserGuard]}
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-export class Todoliste {
+export class Projet {
 
     constructor(
         public idListe:number,                 

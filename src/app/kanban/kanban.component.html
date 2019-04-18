@@ -1,9 +1,9 @@
 <article class="row">
   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <p class="lead">Liste des tâches à réaliser</p>
-      <a routerLink="/todoliste"><button type="button" class="btn btn-success" >Liste projet TodoListe</button></a>
+      <a routerLink="/todoliste"><button type="button" class="btn btn-success" >Liste des projets</button></a>
       <a routerLink="/formulaireTache"><button type="button" class="btn btn-primary" >Creer une tâche</button></a><br>
-             <br> <h2 class="lead">Le Tableau Kanban de Maxime</h2>
+             <br> <h2 class="lead">Kanban de Maxime</h2>
              <br>
   </div>
 </article>
@@ -13,11 +13,11 @@
   <h3>A Faire</h3>
 
   <div  
-  (mouseup)="getPosition('A Faire')"
+  (mouseup)="getPosition('à faire')"
     cdkDropList
     #AFaire="cdkDropList"
     [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[EnCour,Afaire]"
+    [cdkDropListConnectedTo]="[EnCour]"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let item of todo" cdkDrag [cdkDragData]="item">{{item}}</div>
@@ -25,14 +25,14 @@
 </div>
 
 <div class="example-container">
-  <h3>En Cour</h3>
+  <h3>En Cours</h3>
 
   <div
-  (mouseup)="getPosition('En Cour')"
+  (mouseup)="getPosition('en cours')"
     cdkDropList
     #EnCour="cdkDropList"
     [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[Terminer]"
+    [cdkDropListConnectedTo]="[AFaire, EnCour, Terminer]"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let item of done" cdkDrag [cdkDragData]="item">{{item}}</div>
@@ -43,7 +43,7 @@
   <h3>Terminer</h3>
 
   <div
-  (mouseup)="getPosition('Terminer')"
+  (mouseup)="getPosition('terminer')"
     cdkDropList
     #Terminer="cdkDropList"
     [cdkDropListData]="finish"

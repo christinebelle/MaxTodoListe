@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatalisteService } from '../service/dataliste.service';
-import { Todoliste } from '../modeles/Todoliste';
+import { Projet } from '../modeles/Projet';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,7 +16,7 @@ export class TodolisteComponent implements OnInit {
 
   
   displayedColumns: string[] = ['idListe', 'nomListe', 'decritListe', 'dateListe', 'evolListe','modif','Supp'];
-  dataSource = new MatTableDataSource<Todoliste>() ;
+  dataSource = new MatTableDataSource<Projet>() ;
   id: number;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -26,7 +26,7 @@ export class TodolisteComponent implements OnInit {
 
   ngOnInit() {  
     
-    this.datalisteService.todoliste$.subscribe( todolisteApi => {
+    this.datalisteService.projetliste$.subscribe( todolisteApi => {
 
       this.dataSource.data = todolisteApi;        
       this.dataSource.paginator = this.paginator;

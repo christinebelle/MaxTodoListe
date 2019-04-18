@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DatatacheService } from '../service/datatache.service';
-import { DragDrop } from '../modeles/DragDrop';
+import { Tache } from '../modeles/Tache';
 import { Router } from '@angular/router';
 import { DatalisteService } from '../service/dataliste.service';
+import { Projet } from '../modeles/Projet';
 
 @Component({
   selector: 'app-creer-kanban',
@@ -11,19 +12,20 @@ import { DatalisteService } from '../service/dataliste.service';
 })
 export class CreerKanbanComponent implements OnInit {
 
-  newTache : DragDrop;
+  newTache : Tache;
   listeprojets;
 
   constructor( private dataTacheService: DatatacheService, private dataListeService: DatalisteService, private router: Router) { }
 
   ngOnInit() {
 
-    this.newTache = new DragDrop(0,'','',0);
+    this.newTache = new Tache(0,'','',new Projet(0,"a","a","a",new Date()));
 
-    this.listeprojets = this.dataListeService.getListe();
+    console.log(this.newTache)
+
+    this.listeprojets = this.dataListeService.getListeProjet();
     this.listeprojets.subscribe( lesprojets => {
       this.listeprojets = lesprojets;
-      console.log(this.listeprojets)
     })
     
   }
@@ -32,7 +34,7 @@ export class CreerKanbanComponent implements OnInit {
   onSave() {
 
     this.dataTacheService.createTache(this.newTache);
-
-    this.router.navigate(['/kanban']);
+    console.log(this.newTache)
+    this.router.navigate(['/']);
   }
 }

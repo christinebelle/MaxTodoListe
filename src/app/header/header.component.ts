@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataloginService } from '../service/datalogin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: DataloginService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public onLogout() {
+
+    this.loginService.signOut();
+    console.log("Deconnexion réalisée avec sucess");
+    this.router.navigate(['login'])
   }
   
 }

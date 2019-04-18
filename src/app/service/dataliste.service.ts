@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Todoliste } from '../modeles/Todoliste';
+import { Projet } from '../modeles/Projet';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -11,21 +11,21 @@ import {map} from 'rxjs/operators';
 
 export class DatalisteService {
 
- public doliste: Todoliste[];
+ public projetliste: Projet[];
 
- todoliste$: BehaviorSubject<Todoliste[]> = new BehaviorSubject(this.doliste);
+ projetliste$: BehaviorSubject<Projet[]> = new BehaviorSubject(this.projetliste);
 
 
   constructor(private httpClient: HttpClient) { }
 
-  public getListe(): Observable<Todoliste[]> {// l'observable verfifie le type et le delais de retour
-    return this.httpClient.get<Todoliste[]>('http://localhost:8080/liste');// interprete le retour JSON et lance un observable
+  public getListeProjet(): Observable<Projet[]> {// l'observable verfifie le type et le delais de retour
+    return this.httpClient.get<Projet[]>('http://localhost:8080/liste');// interprete le retour JSON et lance un observable
   }
 
   public publishListes() {
-    this.getListe().subscribe(leslistes => {
-      this.doliste = leslistes;
-      this.todoliste$.next(this.doliste);
+    this.getListeProjet().subscribe(lesprojets => {
+      this.projetliste = lesprojets;
+      this.projetliste$.next(this.projetliste);
     });
   }
 
@@ -34,44 +34,44 @@ export class DatalisteService {
    * @param idListe
    * @return Observable<Todoliste>
    */
-  public findListe(id: number): Observable<Todoliste> {
+  public findListe(id: number): Observable<Projet> {
     if(id) { 
-        if (!this.doliste) {
-          return this.getListe().pipe(map(lites => lites.find(liste => liste.idListe === id)));
+        if (!this.projetliste) {
+          return this.getListeProjet().pipe(map(litesprojet => litesprojet.find(projet => projet.idListe === id)));
         }
-        return of(this.doliste.find(liste => liste.idListe === id));
+        return of(this.projetliste.find(projet => projet.idListe === id));
       } else {
-        return of(new Todoliste(0, '', '', "",new Date()))
+        return of(new Projet(0, '', '', "",new Date()))
       }
   }
 
   /**
    * fonction de création d'un projet dans la bdd, et qui rajoute un projet a la liste afin de creer
    * un affichage dynamique
-   * @param listeCreate
+   * @param projetCreate
    */
-  public createListe(listeCreate: Todoliste) {
-    this.httpClient.post<Todoliste>('http://localhost:8080/ajouter', listeCreate).subscribe(
-      newListe => {
-        this.doliste.push(newListe);
-        this.todoliste$.next(this.doliste);
+  public createListe(projetCreate: Projet) {
+    this.httpClient.post<Projet>('http://localhost:8080/ajouter', projetCreate).subscribe(
+      newProjet => {
+        this.projetliste.push(newProjet);
+        this.projetliste$.next(this.projetliste);
       });
   }
 
    /**
    * fonction de modification d'un projet dans la bdd et dans la liste afin de creer une affichage dynamique
-   * @param listeUpdate
+   * @param projetUpdate
    */
-  public updateListe(listeUpdate: Todoliste) {
-    this.httpClient.put<Todoliste>('http://localhost:8080/modifier',listeUpdate).subscribe(
-      updatedListe => {
-        const index = this.doliste.findIndex(liste => {
-          if (liste.idListe === updatedListe.idListe) {
+  public updateListe(projetUpdate: Projet) {
+    this.httpClient.put<Projet>('http://localhost:8080/modifier',projetUpdate).subscribe(
+      updatedProjet => {
+        const index = this.projetliste.findIndex(projet => {
+          if (projet.idListe === updatedProjet.idListe) {
             return true;
           }
         });
-        this.doliste[index] = updatedListe;
-        this.todoliste$.next(this.doliste);
+        this.projetliste[index] = updatedProjet;
+        this.projetliste$.next(this.projetliste);
       });
   }
 
@@ -82,16 +82,16 @@ export class DatalisteService {
   public deleteListe(idListe: number) {
     this.httpClient.delete('http://localhost:8080/supprime/' + idListe).subscribe(
       ()=> {
-        const index = this.doliste.findIndex(liste => {
-          if (liste.idListe === idListe) {
+        const index = this.projetliste.findIndex(projet => {
+          if (projet.idListe === idListe) {
             return true;
           }
         },
         (error)=>{
           console.log("error", error);
         });
-        this.doliste.splice(index, 1);
-        this.todoliste$.next(this.doliste);
+        this.projetliste.splice(index, 1);
+        this.projetliste$.next(this.projetliste);
       });
   }
 

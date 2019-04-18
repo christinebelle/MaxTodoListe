@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatalisteService } from '../service/dataliste.service';
-import { Todoliste } from '../modeles/Todoliste';
+import { Projet } from '../modeles/Projet';
 import {ActivatedRoute, Router} from '@angular/router';
 
 
@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class FormulaireComponent implements OnInit {
 
   id: number;
-  modifListe: Todoliste;
+  modifListe: Projet;
   newId: number;
   
 
@@ -34,7 +34,7 @@ export class FormulaireComponent implements OnInit {
         liste => this.modifListe = liste
       );
     } else {
-      this.modifListe = new Todoliste(0, '', '', '',new Date());
+      this.modifListe = new Projet(0, '', '', '',new Date());
     }
   }
 
